@@ -33,7 +33,6 @@ class MoviesAdapter(
             this.movies.size,
             movies.size - 1
         )
-        notifyDataSetChanged()
     }
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

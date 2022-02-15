@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.koplanyidavid.movies.*
 import com.koplanyidavid.movies.data.Movie
+import com.koplanyidavid.movies.databinding.ActivityMainBinding
 import com.koplanyidavid.movies.objects.MoviesRepository
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     private lateinit var popularMovies: RecyclerView
     private lateinit var popularMoviesAdapter: MoviesAdapter
@@ -32,9 +35,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        popularMovies = findViewById(R.id.popular_movies)
+        popularMovies = binding.popularMovies
         popularMoviesLayoutMgr = LinearLayoutManager(
             this,
             LinearLayoutManager.HORIZONTAL,
@@ -44,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         popularMoviesAdapter = MoviesAdapter(mutableListOf()) { movie -> showMovieDetails(movie) }
         popularMovies.adapter = popularMoviesAdapter
 
-        topRatedMovies = findViewById(R.id.top_rated_movies)
+        topRatedMovies = binding.topRatedMovies
         topRatedMoviesLayoutMgr = LinearLayoutManager(
             this,
             LinearLayoutManager.HORIZONTAL,
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         topRatedMoviesAdapter = MoviesAdapter(mutableListOf()) { movie -> showMovieDetails(movie) }
         topRatedMovies.adapter = topRatedMoviesAdapter
 
-        upcomingMovies = findViewById(R.id.upcoming_movies)
+        upcomingMovies = binding.upcomingMovies
         upcomingMoviesLayoutMgr = LinearLayoutManager(
             this,
             LinearLayoutManager.HORIZONTAL,

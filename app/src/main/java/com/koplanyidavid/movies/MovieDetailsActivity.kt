@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.koplanyidavid.movies.databinding.ActivityMovieDetailsBinding
 
 const val MOVIE_BACKDROP = "extra_movie_backdrop"
 const val MOVIE_POSTER = "extra_movie_poster"
@@ -17,6 +18,7 @@ const val MOVIE_OVERVIEW = "extra_movie_overview"
 
 class MovieDetailsActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMovieDetailsBinding
     private lateinit var backdrop: ImageView
     private lateinit var poster: ImageView
     private lateinit var title: TextView
@@ -26,14 +28,15 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_details)
+        binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        backdrop = findViewById(R.id.movie_backdrop)
-        poster = findViewById(R.id.movie_poster)
-        title = findViewById(R.id.movie_title)
-        rating = findViewById(R.id.movie_rating)
-        releaseDate = findViewById(R.id.movie_release_date)
-        overview = findViewById(R.id.movie_overview)
+        backdrop = binding.movieBackdrop
+        poster = binding.moviePoster
+        title = binding.movieTitle
+        rating = binding.movieRating
+        releaseDate = binding.movieReleaseDate
+        overview = binding.movieOverview
 
         val extras = intent.extras
 
